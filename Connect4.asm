@@ -10,6 +10,12 @@ board BYTE 42 DUP (0)
 message BYTE "Hello World!", 0
 
 .code
+PrintBoard PROC
+	call	WriteString
+	call	Crlf
+	ret
+PrintBoard ENDP
+
 main proc
 	mov		eax,yellow + (blue * 16)
 	call	SetTextColor
@@ -17,6 +23,7 @@ main proc
 	mov		edx, OFFSET message
 	call	WriteString
 	call	Crlf
+	call	PrintBoard
 
 	exit
 main endp
