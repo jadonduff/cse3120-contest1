@@ -11,17 +11,29 @@ message BYTE "Hello World!", 0
 
 .code
 PrintBoard PROC
-	mov ecx, LENGTHOF board
-	mov edx, 0
+	mov ecx, 6
+	mov	edx, 35
 
-	L1:
-		xor		eax, eax			; Clear EAX
-		mov		al, [board + edx]	; Get the current array location
-		call	WriteDec
-		inc		edx
-		LOOP L1
+	LoopBoard:
+		; First print idx 35 -> 41, then newline, (subtract 13 for next row), then 28 -> 34, ...
+		mov ebx, ecx
+		mov	ecx, 7
+
+		LoopRow:
+			xor		eax, eax			; Clear EAX
+			mov		al, [board + edx]	; Get the current array location
+			call	WriteDec
+			inc		edx
+			LOOP LoopRow
+
+		sub	edx, 13
+		mov ecx, ebx
+
+	call Crlf
+	LOOP Loopboard
 
 	ret
+
 PrintBoard ENDP
 
 main proc
