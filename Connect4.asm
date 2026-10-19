@@ -49,12 +49,12 @@ PrintBoard PROC
 		sub	ebx, 14
 		pop ecx
 
-	call Crlf
-	cmp ecx, 1
-	je skipLastRowSep
-	mov		edx, OFFSET rowSeparator
-	call	WriteString
-	SkipLastRowSep:
+	;call Crlf
+	;cmp ecx, 1
+	;je skipLastRowSep
+	;mov		edx, OFFSET rowSeparator
+	;call	WriteString
+	;SkipLastRowSep:
 	call Crlf
 	LOOP Loopboard
 
