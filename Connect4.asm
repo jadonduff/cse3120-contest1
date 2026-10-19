@@ -11,8 +11,16 @@ message BYTE "Hello World!", 0
 
 .code
 PrintBoard PROC
-	call	WriteString
-	call	Crlf
+	mov ecx, LENGTHOF board
+	mov edx, 0
+
+	L1:
+		xor		eax, eax			; Clear EAX
+		mov		al, [board + edx]	; Get the current array location
+		call	WriteDec
+		inc		edx
+		LOOP L1
+
 	ret
 PrintBoard ENDP
 
