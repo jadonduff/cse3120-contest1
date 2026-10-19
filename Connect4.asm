@@ -14,9 +14,9 @@ main proc
 	mov		eax,yellow + (blue * 16)
 	call	SetTextColor
 	call	ClrScr
-	mov edx, OFFSET message
-	call WriteString
-	call Crlf
+	mov		edx, OFFSET message
+	call	WriteString
+	call	Crlf
 
 	exit
 main endp
