@@ -26,9 +26,22 @@ PrintBoard PROC
 			mov		al, [board + ebx]	; Get the current array location
 			call	WriteDec
 
+			cmp ebx, 6
+			je SkipLastSep
+			cmp ebx, 13
+			je SkipLastSep
+			cmp ebx, 20
+			je SkipLastSep
+			cmp ebx, 27
+			je SkipLastSep
+			cmp ebx, 34
+			je SkipLastSep
+			cmp ebx, 41
+			je SkipLastSep
 			mov		edx, OFFSET columnSeparator
 			call	WriteString
 
+			SkipLastSep:
 			inc		ebx
 			LOOP LoopRow
 
