@@ -27,7 +27,7 @@ PrintBoard PROC
 			inc		edx
 			LOOP LoopRow
 
-		sub	edx, 13
+		sub	edx, 14
 		mov ecx, ebx
 
 	call Crlf
