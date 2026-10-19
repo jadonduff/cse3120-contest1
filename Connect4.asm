@@ -14,7 +14,7 @@ columnSeparator BYTE " | ", 0
 .code
 PrintBoard PROC
 	mov ecx, 6
-	mov	edx, 35
+	mov	ebx, 35
 
 	LoopBoard:
 		; First print idx 35 -> 41, then newline, (subtract 13 for next row), then 28 -> 34, ...
@@ -23,12 +23,12 @@ PrintBoard PROC
 
 		LoopRow:
 			xor		eax, eax			; Clear EAX
-			mov		al, [board + edx]	; Get the current array location
+			mov		al, [board + ebx]	; Get the current array location
 			call	WriteDec
-			inc		edx
+			inc		ebx
 			LOOP LoopRow
 
-		sub	edx, 14
+		sub	ebx, 14
 		pop ecx
 
 	call Crlf
