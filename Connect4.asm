@@ -25,6 +25,10 @@ PrintBoard PROC
 			xor		eax, eax			; Clear EAX
 			mov		al, [board + ebx]	; Get the current array location
 			call	WriteDec
+
+			mov		edx, OFFSET columnSeparator
+			call	WriteString
+
 			inc		ebx
 			LOOP LoopRow
 
