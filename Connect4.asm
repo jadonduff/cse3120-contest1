@@ -16,8 +16,8 @@ rowSeparator BYTE "  |   |   |   |   |   |"
 
 .code
 ;Procedure for printing the connect 4 board
-;uses eax, ebx, ecx
-PrintBoard PROC
+;uses eax, ebx, ecx, edx
+PrintBoard PROC USES eax ebx ecx edx
 	mov ecx, 6
 	mov	ebx, 42
 
