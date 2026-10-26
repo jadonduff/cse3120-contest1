@@ -34,7 +34,7 @@ PrintBoard PROC USES eax ebx ecx edx
 
 			mov eax, ebx
 			add eax, 1
-			div cols
+			div cols ; Find the remainer of (ebx + 1) / 7 to know when we print the end of a line
 
 			cmp ah, 0
 			je SkipLastSep
@@ -49,12 +49,6 @@ PrintBoard PROC USES eax ebx ecx edx
 		sub	ebx, 14
 		pop ecx
 
-	;call Crlf
-	;cmp ecx, 1
-	;je skipLastRowSep
-	;mov		edx, OFFSET rowSeparator
-	;call	WriteString
-	;SkipLastRowSep:
 	call Crlf
 	LOOP Loopboard
 
@@ -62,6 +56,12 @@ PrintBoard PROC USES eax ebx ecx edx
 
 PrintBoard ENDP
 
+MakeMove proc
+;The column the piece should be placed in should be in ecx
+;The player placing the piece should be in edx
+
+
+MakeMove ENDP
 
 main proc
 	mov		eax,yellow + (blue * 16)
