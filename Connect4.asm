@@ -63,6 +63,14 @@ PrintBoard PROC USES eax ebx ecx edx
 PrintBoard ENDP
 
 
+MakeMove PROC USES eax ebx ecx edx
+
+	mov eax, 0
+	ret
+
+MakeMove ENDP
+
+
 main proc
 	mov		eax,yellow + (blue * 16)
 	call	SetTextColor
