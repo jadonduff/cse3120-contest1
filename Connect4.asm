@@ -13,6 +13,7 @@ board BYTE 42 DUP (0),1,2,3,4,5,6,7
 message BYTE "Hello World!", 0
 columnSeparator BYTE " | ", 0
 rowSeparator BYTE "  |   |   |   |   |   |"
+prompt BYTE "Enter a number...", 0
 
 .code
 ;Procedure for printing the connect 4 board
@@ -63,6 +64,16 @@ MakeMove proc
 
 MakeMove ENDP
 
+MakeMove PROC USES eax ebx ecx edx
+
+	mov		edx, OFFSET prompt
+	call	WriteString
+	call	ReadInt
+	ret
+
+MakeMove ENDP
+
+
 main proc
 	mov		eax,yellow + (blue * 16)
 	call	SetTextColor
@@ -71,6 +82,10 @@ main proc
 	;call	WriteString
 	;call	Crlf
 	call	PrintBoard
+
+	call	Crlf
+	call	Crlf
+	call	MakeMove
 
 	exit
 main endp
