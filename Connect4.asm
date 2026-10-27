@@ -19,7 +19,7 @@ prompt BYTE "Enter a number...", 0
 ;Procedure for printing the connect 4 board
 ;uses eax, ebx, ecx, edx
 PrintBoard PROC USES eax ebx ecx edx
-	mov ecx, 6
+	mov ecx, 7
 	mov	ebx, 42
 
 	LoopBoard:
@@ -61,31 +61,34 @@ MakeMove proc
 ;The column the piece should be placed in should be in ecx
 ;The player placing the piece should be in edx
 
+;test modifying the board
+mov board, 1
+mov board[8], 2
+ret
 
 MakeMove ENDP
 
-MakeMove PROC USES eax ebx ecx edx
+GetUserMove PROC USES eax ebx ecx edx
 
 	mov		edx, OFFSET prompt
 	call	WriteString
 	call	ReadInt
 	ret
 
-MakeMove ENDP
+GetUserMove ENDP
 
 
 main proc
 	mov		eax,yellow + (blue * 16)
 	call	SetTextColor
 	call	ClrScr
-	;mov		edx, OFFSET message
-	;call	WriteString
-	;call	Crlf
+
 	call	PrintBoard
 
 	call	Crlf
 	call	Crlf
 	call	MakeMove
+	call	PrintBoard
 
 	exit
 main endp
