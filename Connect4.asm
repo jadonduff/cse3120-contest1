@@ -8,7 +8,7 @@ INCLUDE Irvine32.inc
 ; 0 = Nothing, 1 = Player 1, 2 = Player 2
 row BYTE 6
 cols Byte 7
-board BYTE 42 DUP (0),1,2,3,4,5,6,7
+board BYTE 42 DUP ('0'),'1','2','3','4','5','6','7'
 ;board BYTE 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41
 message BYTE "Hello World!", 0
 columnSeparator BYTE " | ", 0
@@ -31,7 +31,7 @@ PrintBoard PROC USES eax ebx ecx edx
 		LoopRow:
 			xor		eax, eax			; Clear EAX
 			mov		al, [board + ebx]	; Get the current array location
-			call	WriteDec
+			call	WriteChar
 
 			mov eax, ebx
 			add eax, 1
@@ -57,13 +57,22 @@ PrintBoard PROC USES eax ebx ecx edx
 
 PrintBoard ENDP
 
-MakeMove proc
+MakeMove PROC USES ecx edx
 ;The column the piece should be placed in should be in ecx
-;The player placing the piece should be in edx
+;The player placing the piece should be in dl
 
-;test modifying the board
-mov board, 1
-mov board[8], 2
+sub ecx, 1
+
+FindEmpty:
+cmp board[ecx], '0'
+je EmptyCell
+add ecx, 7
+jmp FindEmpty
+
+EmptyCell:
+;ecx contains the index of the empty cell
+mov board[ecx], dl ;change the empty value to the player piece
+
 ret
 
 MakeMove ENDP
@@ -87,7 +96,23 @@ main proc
 
 	call	Crlf
 	call	Crlf
+
+	mov		ecx, 3
+	mov		edx, 'A'
 	call	MakeMove
+
+	call	Crlf
+	call	Crlf
+	
+	call	PrintBoard
+	
+	mov		ecx, 3
+	mov		edx, 'B'
+	call	MakeMove
+	
+	call	Crlf
+	call	Crlf
+
 	call	PrintBoard
 
 	exit
