@@ -69,7 +69,11 @@ MakeMove PROC USES eax ebx ecx edx
 	mov		edx, OFFSET prompt
 	call	WriteString
 	call	ReadInt
-	mov		[board + eax], 1
+	mov		ebx, eax
+
+	xor		eax, eax
+	mov		al, [board + ebx]
+
 	call	WriteInt
 	call	Crlf
 	call	PrintBoard
