@@ -155,22 +155,20 @@ main proc
 	call	ClrScr
 
 	GameLoop:
-	call	PrintBoard
+		call	PrintBoard
 
-	call	Crlf
-	call	Crlf
+		call	Crlf
+		call	Crlf
 
-	mov		ecx, 3
-	mov		edx, 'A'
-	call	GetUserMove
-	call	MakeMove
+		mov		edx, 'A'
+		call	GetUserMove
+		call	MakeMove
 
-	call	Crlf
-	call	Crlf
+		call	Crlf
+		call	Crlf
 	
-	call	PrintBoard
+		call	PrintBoard
 	
-	mov		ecx, 3
 	mov		edx, 'B'
 	call	GetUserMove
 	call	MakeMove
