@@ -97,19 +97,19 @@ PrintBoard ENDP
 ; Uses:
 ;   ecx, edx
 MakeMove PROC USES ecx edx
-sub ecx, 1
+	sub ecx, 1
 
-FindEmpty:
-cmp board[ecx], '0'
-je EmptyCell
-add ecx, 7
-jmp FindEmpty
+	FindEmpty:
+		cmp board[ecx], '0'
+		je EmptyCell
+		add ecx, 7
+		jmp FindEmpty
 
-EmptyCell:
-;ecx contains the index of the empty cell
-mov board[ecx], dl ;change the empty value to the player piece
+	EmptyCell:
+		; ecx contains the index of the empty cell
+		mov board[ecx], dl ; change the empty value to the player piece
 
-ret
+	ret
 
 MakeMove ENDP
 
