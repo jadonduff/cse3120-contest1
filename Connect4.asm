@@ -22,7 +22,7 @@ INCLUDE Irvine32.inc
 ; The board contains 6 Rows and 7 Cols
 row BYTE 6
 cols Byte 7
-board BYTE 42 DUP ('0'),'1','2','3','4','5','6','7'
+board BYTE 42 DUP (' '),'1','2','3','4','5','6','7'
 
 ; Here are helper separators for printing the board
 columnSeparator BYTE " | ", 0
@@ -100,7 +100,7 @@ MakeMove PROC USES ebx ecx edx
 	sub ecx, 1
 
 	FindEmpty:
-		cmp board[ecx], '0'
+		cmp board[ecx], ' '
 		je EmptyCell
 		add ecx, 7
 		jmp FindEmpty
@@ -130,7 +130,7 @@ MakeMove PROC USES ebx ecx edx
 		mov eax, 100
 		call Delay
 
-		mov board[ecx], '0'
+		mov board[ecx], ' '
 		sub ecx, 7
 
 		jmp AnimateDrop
@@ -200,7 +200,7 @@ main proc
 	
 		call	PrintBoard
 		
-		mov eax, 1000
+		mov eax, 750
 		call Delay
 	
 		mov		edx, 'B'
