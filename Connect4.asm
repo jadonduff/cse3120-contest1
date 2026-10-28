@@ -19,6 +19,7 @@ prompt BYTE "Enter a number...", 0
 ;Procedure for printing the connect 4 board
 ;uses eax, ebx, ecx, edx
 PrintBoard PROC USES eax ebx ecx edx
+	call ClrScr
 	mov ecx, 7
 	mov	ebx, 42
 
@@ -77,11 +78,13 @@ ret
 
 MakeMove ENDP
 
-GetUserMove PROC USES eax ebx ecx edx
+GetUserMove PROC USES edx
+; Places user move in ECX
 
 	mov		edx, OFFSET prompt
 	call	WriteString
 	call	ReadInt
+	mov		ecx, eax
 	ret
 
 GetUserMove ENDP
@@ -99,6 +102,7 @@ main proc
 
 	mov		ecx, 3
 	mov		edx, 'A'
+	call	GetUserMove
 	call	MakeMove
 
 	call	Crlf
@@ -108,6 +112,7 @@ main proc
 	
 	mov		ecx, 3
 	mov		edx, 'B'
+	call	GetUserMove
 	call	MakeMove
 	
 	call	Crlf
