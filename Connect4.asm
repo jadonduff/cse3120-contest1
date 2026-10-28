@@ -127,7 +127,7 @@ MakeMove PROC USES ebx ecx edx
 
 		call PrintBoard
 
-		mov eax, 250
+		mov eax, 100
 		call Delay
 
 		mov board[ecx], '0'
@@ -199,6 +199,9 @@ main proc
 		call	Crlf
 	
 		call	PrintBoard
+		
+		mov eax, 1000
+		call Delay
 	
 		mov		edx, 'B'
 		call	GetAIMove
