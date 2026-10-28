@@ -110,7 +110,7 @@ MakeMove PROC USES ebx ecx edx
 		;;; mov board[ecx], dl ; change the empty value to the player piece
 		mov ebx, ecx
 
-	;;; Experimental
+	; Animation
 	MoveToTop:
 		cmp ecx, 34
 		ja AnimateDrop
@@ -136,7 +136,7 @@ MakeMove PROC USES ebx ecx edx
 		jmp AnimateDrop
 	AnimationDone:
 		mov board[ebx], dl
-	;;;
+	; End of Animation
 
 	ret
 
