@@ -133,6 +133,17 @@ GetUserMove PROC USES edx
 GetUserMove ENDP
 
 
+; ---- GetAIMove Procedure --------------
+; Generates a move from the AI
+; Args:
+;   None
+; Returns:
+;   eax: The ai's desired column
+;   ecx: The ai's desired column
+; Uses:
+;   None
+
+
 ; ---- Main -----------------------------
 main proc
 	mov		eax,yellow + (blue * 16)
