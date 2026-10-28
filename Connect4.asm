@@ -97,9 +97,6 @@ PrintBoard ENDP
 ; Uses:
 ;   ecx, edx
 MakeMove PROC USES ecx edx
-;The column the piece should be placed in should be in ecx
-;The player placing the piece should be in dl
-
 sub ecx, 1
 
 FindEmpty:
