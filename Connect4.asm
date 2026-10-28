@@ -110,12 +110,12 @@ MakeMove PROC USES ecx edx
 		mov board[ecx], dl ; change the empty value to the player piece
 
 	;;; Experimental
-	FillUp:
+	MoveToTop:
 		cmp ecx, 34
-		ja FillUpDone
+		ja AnimateDrop
 		add ecx, 7
-		jmp FillUp
-	FillUpDone:
+		jmp MoveToTop
+	AnimateDrop:
 		cmp ecx, 6
 		jbe AnimationDone
 
