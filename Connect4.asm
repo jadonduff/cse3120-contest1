@@ -95,8 +95,8 @@ PrintBoard ENDP
 ; Returns:
 ;   None
 ; Uses:
-;   ecx, edx
-MakeMove PROC USES ecx edx
+;   ebx, ecx, edx
+MakeMove PROC USES ebx ecx edx
 	sub ecx, 1
 
 	FindEmpty:
@@ -107,7 +107,8 @@ MakeMove PROC USES ecx edx
 
 	EmptyCell:
 		; ecx contains the index of the empty cell
-		mov board[ecx], dl ; change the empty value to the player piece
+		;;; mov board[ecx], dl ; change the empty value to the player piece
+		mov ebx, ecx
 
 	;;; Experimental
 	MoveToTop:
@@ -116,6 +117,9 @@ MakeMove PROC USES ecx edx
 		add ecx, 7
 		jmp MoveToTop
 	AnimateDrop:
+		cmp ecx, ebx
+		jbe AnimationDone
+
 		cmp ecx, 6
 		jbe AnimationDone
 
@@ -129,8 +133,9 @@ MakeMove PROC USES ecx edx
 		mov board[ecx], '0'
 		sub ecx, 7
 
-		jmp FillUpDone
+		jmp AnimateDrop
 	AnimationDone:
+		mov board[ebx], dl
 	;;;
 
 	ret
