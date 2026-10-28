@@ -154,6 +154,7 @@ main proc
 	call	SetTextColor
 	call	ClrScr
 
+	GameLoop:
 	call	PrintBoard
 
 	call	Crlf
