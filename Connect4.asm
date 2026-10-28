@@ -1,5 +1,10 @@
-; Connect 4
-; Developed by Jadon Duff and Ryan Gomes
+; # --------------------------------------------------
+; # Title: Connect 4
+; # Authors: Jadon Duff and Ryan Gomes
+; # Class: CSE3120
+; # Project: Contest 1
+; # Software: MASM & Visual Studio Code
+; # --------------------------------------------------
 
 INCLUDE Irvine32.inc
 
