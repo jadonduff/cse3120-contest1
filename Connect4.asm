@@ -142,6 +142,10 @@ GetUserMove ENDP
 ;   ecx: The ai's desired column
 ; Uses:
 ;   None
+GetAIMove PROC
+	mov		eax, 4
+	mov		ecx, eax
+GetAIMove ENDP
 
 
 ; ---- Main -----------------------------
