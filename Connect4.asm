@@ -169,14 +169,13 @@ main proc
 	
 		call	PrintBoard
 	
-	mov		edx, 'B'
-	call	GetUserMove
-	call	MakeMove
+		call	GetAIMove
+		call	MakeMove
 	
-	call	Crlf
-	call	Crlf
+		call	Crlf
+		call	Crlf
 
-	call	PrintBoard
+		call	PrintBoard
 
 	exit
 main endp
