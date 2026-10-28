@@ -181,6 +181,7 @@ GetAIMove ENDP
 
 ; ---- Main -----------------------------
 main proc
+	call	Randomize  ; Randomize not learned in class but Irvine methods were. Found method from Textbook. Sets a random seed
 	mov		eax,yellow + (blue * 16)
 	call	SetTextColor
 	call	ClrScr
