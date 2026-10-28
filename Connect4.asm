@@ -163,7 +163,7 @@ GetUserMove ENDP
 
 
 ; ---- GetAIMove Procedure --------------
-; Generates a move from the AI
+; Generates a random move from the AI
 ; Args:
 ;   None
 ; Returns:
@@ -172,7 +172,9 @@ GetUserMove ENDP
 ; Uses:
 ;   None
 GetAIMove PROC
-	mov		eax, 4
+	mov		eax, 7
+	Call	RandomRange
+	inc		eax
 	mov		ecx, eax
 	ret
 
