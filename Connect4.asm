@@ -145,6 +145,8 @@ GetUserMove ENDP
 GetAIMove PROC
 	mov		eax, 4
 	mov		ecx, eax
+	ret
+
 GetAIMove ENDP
 
 
@@ -169,6 +171,7 @@ main proc
 	
 		call	PrintBoard
 	
+		mov		edx, 'B'
 		call	GetAIMove
 		call	MakeMove
 	
@@ -176,6 +179,7 @@ main proc
 		call	Crlf
 
 		call	PrintBoard
+		jmp		GameLoop
 
 	exit
 main endp
