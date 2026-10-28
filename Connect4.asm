@@ -11,8 +11,11 @@
 ; #   Microsoft Macro Assembler (MASM)
 ; # --------------------------------------------------
 
+; ---- Libraries ------------------------
 INCLUDE Irvine32.inc
 
+
+; ---- Data -----------------------------
 .data
 ; 6 Rows and 7 Cols
 ; 0 = Nothing, 1 = Player 1, 2 = Player 2
