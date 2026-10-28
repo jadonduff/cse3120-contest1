@@ -109,6 +109,15 @@ MakeMove PROC USES ecx edx
 		; ecx contains the index of the empty cell
 		mov board[ecx], dl ; change the empty value to the player piece
 
+	;;; Experimental
+	FillUp:
+		add ecx, 7
+		cmp ecx, 41
+		ja FillUpDone
+		jmp FillUp
+	FillUpDone:
+	;;;
+
 	ret
 
 MakeMove ENDP
