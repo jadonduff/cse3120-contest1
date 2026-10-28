@@ -124,8 +124,6 @@ MakeMove ENDP
 ; Uses:
 ;   edx
 GetUserMove PROC USES edx
-; Places user move in ECX
-
 	mov		edx, OFFSET prompt
 	call	WriteString
 	call	ReadInt
