@@ -111,11 +111,13 @@ MakeMove PROC USES ecx edx
 
 	;;; Experimental
 	FillUp:
-		add ecx, 7
-		cmp ecx, 41
+		cmp ecx, 34
 		ja FillUpDone
+		add ecx, 7
 		jmp FillUp
 	FillUpDone:
+		mov board[ecx], dl
+	AnimationDone:
 	;;;
 
 	ret
