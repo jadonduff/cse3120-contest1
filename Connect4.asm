@@ -114,16 +114,15 @@ MakeMove PROC USES ecx edx
 MakeMove ENDP
 
 
-; ---- MakeMove Procedure ---------------
-; Updates the global board array with a specified input by simulating a drop into the column
+; ---- GetUserMove Procedure ------------
+; Gets a move from the user via standard input
 ; Args:
-;   ecx: The column the piece should be dropped in
-;   dl: The player placing the piece ('A' or 'B')
-;   board: Uses the global board array variable
-; Returns:
 ;   None
+; Returns:
+;   eax: The user's desired column
+;   ecx: The user's desired column
 ; Uses:
-;   ecx, edx
+;   edx
 GetUserMove PROC USES edx
 ; Places user move in ECX
 
