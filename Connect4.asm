@@ -1,9 +1,10 @@
+; # Connect4.asm
 ; # --------------------------------------------------
-; # Title: Connect 4
-; # Authors: Jadon Duff and Ryan Gomes
-; # Class: CSE3120
-; # Project: Contest 1
-; # Software: MASM & Visual Studio Code
+; # Title    : Connect 4
+; # Authors  : Jadon Duff and Ryan Gomes
+; # Class    : CSE3120
+; # Project  : Contest 1
+; # Software : MASM & Visual Studio Code
 ; # --------------------------------------------------
 ; # Description:
 ; #   Implementation of the Connect 4 game in
