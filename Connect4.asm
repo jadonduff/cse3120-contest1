@@ -133,6 +133,7 @@ GetUserMove PROC USES edx
 GetUserMove ENDP
 
 
+; ---- Main -----------------------------
 main proc
 	mov		eax,yellow + (blue * 16)
 	call	SetTextColor
