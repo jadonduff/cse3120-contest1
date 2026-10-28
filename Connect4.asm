@@ -31,17 +31,28 @@ rowSeparator BYTE "  |   |   |   |   |   |"
 ; Here is the prompt for input to the user
 prompt BYTE "Enter a number...", 0
 
+
+; ---- Code -----------------------------
 .code
-;Procedure for printing the connect 4 board
-;uses eax, ebx, ecx, edx
+
+
+; ---- PrintBoard Procedure -------------
+; Renders the current board array to the active terminal output
+; Args:
+;   board: Uses the global board array variable
+; Returns:
+;   None (Renders Board)
+; Uses:
+;   eax, ebx, ecx, edx
 PrintBoard PROC USES eax ebx ecx edx
 	call ClrScr
 	mov ecx, 7
 	mov	ebx, 42
 
 	LoopBoard:
-		; UPDATED: First print index 35 -> 41, then newline, (subtract 13 for next row), then 28 -> 34, ...
-		; Print index 42-47 first
+	    ; Prints the board incrementally. So, first line is index 35 -> 41, second line is 28 -> 34, and so on
+		; Between each row, the 13 is subtracted from the counter
+		; Note: index 42 -> 47 is printed first, which are the column numbers the user will enter
 		push ecx
 		mov	ecx, 7
 
