@@ -180,6 +180,31 @@ GetAIMove PROC
 
 GetAIMove ENDP
 
+;Checks to see if either player has 4 in a row.
+;Returns a value in eax: A if player A has won, B if player B has won, and 0 if no player has won yet.
+HasWon PROC
+
+
+HasWon ENDP
+
+;---------Helper functions called by HasWon-----------
+; Each one takes an index as the starting cell and checks 4 cells in the stated direction
+CheckRight PROC
+
+CheckRight ENDP
+
+CheckUpRight PROC
+
+CheckUpRight ENDP
+
+CheckUpLeft PROC
+
+CheckUpLeft ENDP
+
+CheckUp PROC
+
+CheckUp ENDP
+
 
 ; ---- Main -----------------------------
 main proc
