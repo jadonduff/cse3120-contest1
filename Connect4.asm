@@ -19,7 +19,7 @@ INCLUDE Irvine32.inc
 .data
 
 ; Description:
-; The board contains 6 Rows and 7 Cols
+; The board contains 6 Rows and 7 Cols (7th row is for column numbers, not part of the playable board)
 row BYTE 6
 cols Byte 7
 board BYTE 42 DUP (' '),'1','2','3','4','5','6','7'
@@ -188,7 +188,9 @@ HasWon PROC
 HasWon ENDP
 
 ;---------Helper functions called by HasWon-----------
-; Each one takes an index as the starting cell and checks 4 cells in the stated direction
+; Each one takes an index in esi as the starting cell and checks 4 cells in the stated direction
+; Returns a value in ax where al = # of Player A pieces and ah = # of Player B pieces. 
+; Returns -1 if there is no group of 4 tiles starting at the given index going in the stated direction 
 CheckRight PROC
 
 CheckRight ENDP
@@ -197,12 +199,40 @@ CheckUpRight PROC
 
 CheckUpRight ENDP
 
-CheckUpLeft PROC
+CheckDownRight PROC
 
-CheckUpLeft ENDP
+CheckDownRight ENDP
 
-CheckUp PROC
+CheckUp PROC uses esi ebx ecx edx
+xor ax, ax
 
+;starter index in esi
+;check 4 cells
+mov ecx, 4
+L1:
+;if the index is outside the board, immediately jump to the end
+cmp esi, 41
+ja endCheck
+cmp board[esi], 'A'
+je incA
+cmp board[esi], 'B'
+je incB
+jmp endInc
+
+incA:
+add al, 1
+jmp endInc
+
+incB:
+add ah, 1
+jmp endInc
+
+endInc:
+add esi, 7
+loop L1
+
+endCheck:
+ret
 CheckUp ENDP
 
 
