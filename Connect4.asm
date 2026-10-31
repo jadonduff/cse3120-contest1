@@ -188,28 +188,57 @@ HasWon PROC
 HasWon ENDP
 
 ;---------Helper functions called by HasWon-----------
-; Each one takes an index in esi as the starting cell and checks 4 cells in the stated direction
-; Returns a value in ax where al = # of Player A pieces and ah = # of Player B pieces. 
-; Returns -1 if there is no group of 4 tiles starting at the given index going in the stated direction 
-CheckRight PROC
+; Each one takes an index in esi as the starting cell and checks (upto) 4 cells in the stated direction
+; Returns a value in ax where al = # of Player A pieces and ah = # of Player B pieces.
+
+;Checks cells to the right from the start
+CheckRight PROC uses esi ebx ecx edx
+xor ax, ax
+
+;Starter index in esi
+;if cell mod 7 ever decreases, that means we wrapped to another row, and should stop counting
+mov eax, esi
+div cols ;remainder is in ah
+mov dh, ah ;store the original value in dh
+
+mov ecx, 4 ;loop at most 4 times
+LR:
+mov eax, esi
+div cols ;remainder is in ah
+cmp ah, dh ;if the new index is less than the original index mod 7, we jump to endCheck
+jb endCheck
+
+incA:
+
+incB:
+
+endInc:
+inc esi
+loop LR
+
+endCheck:
+ret
 
 CheckRight ENDP
 
+;Checks cells diagonally up from the start
 CheckUpRight PROC
 
 CheckUpRight ENDP
 
+;Checks cells diagonally down from the start
 CheckDownRight PROC
 
 CheckDownRight ENDP
 
+;Checks cells upward from the start
 CheckUp PROC uses esi ebx ecx edx
 xor ax, ax
 
 ;starter index in esi
 ;check 4 cells
 mov ecx, 4
-L1:
+LU:
 ;if the index is outside the board, immediately jump to the end
 cmp esi, 41
 ja endCheck
@@ -229,7 +258,7 @@ jmp endInc
 
 endInc:
 add esi, 7
-loop L1
+loop LU
 
 endCheck:
 ret
