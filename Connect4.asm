@@ -89,7 +89,7 @@ PrintBoard ENDP
 ; ---- MakeMove Procedure ---------------
 ; Updates the global board array with a specified input by simulating a drop into the column
 ; Args:
-;   ecx: The column the piece should be dropped in
+;   ecx: The column the piece should be dropped in (should be between 1 and 7)
 ;   dl: The player placing the piece ('A' or 'B')
 ;   board: Uses the global board array variable
 ; Returns:
@@ -194,6 +194,7 @@ HasWon ENDP
 ;Checks cells to the right from the start
 CheckRight PROC uses esi ebx ecx edx
 xor ax, ax
+xor bx, bx
 
 ;Starter index in esi
 ;if cell mod 7 ever decreases, that means we wrapped to another row, and should stop counting
