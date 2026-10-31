@@ -208,15 +208,26 @@ div cols ;remainder is in ah
 cmp ah, dh ;if the new index is less than the original index mod 7, we jump to endCheck
 jb endCheck
 
+cmp board[esi], 'A'
+je incA
+cmp board[esi], 'B'
+je incB
+jmp endInc
+
+;ax is used for division, so increment bl/bh
 incA:
+inc bl
+jmp endInc
 
 incB:
+inc bh
 
 endInc:
 inc esi
 loop LR
 
 endCheck:
+mov ax, bx
 ret
 
 CheckRight ENDP
@@ -249,12 +260,11 @@ je incB
 jmp endInc
 
 incA:
-add al, 1
+inc al
 jmp endInc
 
 incB:
-add ah, 1
-jmp endInc
+inc ah
 
 endInc:
 add esi, 7
