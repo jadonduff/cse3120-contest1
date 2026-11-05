@@ -183,6 +183,13 @@ GetAIMove ENDP
 ;Checks to see if either player has 4 in a row.
 ;Returns a value in eax: A if player A has won, B if player B has won, and 0 if no player has won yet.
 HasWon PROC
+
+mov		ecx, 41
+
+LoopCheckWin:
+	call	WriteDec
+	
+	LOOP	LoopCheckWin
 ret
 
 HasWon ENDP
