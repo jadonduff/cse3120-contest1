@@ -279,6 +279,22 @@ CheckRight ENDP
 
 ;Checks cells diagonally up from the start
 CheckUpRight PROC
+	xor ax, ax
+	xor bx, bx
+
+	;Starter index in esi
+	;if cell mod 7 ever decreases, that means we wrapped to another row, and should stop counting
+	mov eax, esi
+	div cols ;remainder is in ah
+	mov dh, ah ;store the original value in dh
+
+	mov ecx, 4 ;loop at most 4 times
+	LR:
+	mov eax, esi
+	div cols ;remainder is in ah
+	cmp ah, dh ;if the new index is less than the original index mod 7, we jump to endCheck
+	jb endCheck
+
 
 CheckUpRight ENDP
 
