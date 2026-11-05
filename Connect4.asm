@@ -31,6 +31,10 @@ rowSeparator BYTE "  |   |   |   |   |   |"
 ; Here is the prompt for input to the user
 prompt BYTE "Enter a number...", 0
 
+; Winning messages
+awins BYTE "You Win!", 0
+bwins BYTE "You Lose.", 0
+
 
 ; ---- Code -----------------------------
 .code
