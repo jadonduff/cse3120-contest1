@@ -183,7 +183,7 @@ GetAIMove ENDP
 ;Checks to see if either player has 4 in a row.
 ;Returns a value in eax: A if player A has won, B if player B has won, and 0 if no player has won yet.
 HasWon PROC
-
+ret
 
 HasWon ENDP
 
@@ -294,6 +294,9 @@ main proc
 		call	GetUserMove
 		call	MakeMove
 
+		; Check Win
+		call	HasWon
+
 		; Render Board
 		call	Crlf
 		call	Crlf
@@ -307,6 +310,9 @@ main proc
 		mov		edx, 'B'
 		call	GetAIMove
 		call	MakeMove
+
+		; Check Win
+		call	HasWon
 	
 		; Render Board
 		call	Crlf
