@@ -187,11 +187,27 @@ HasWon PROC
 mov		ecx, 41
 
 LoopCheckWin:
-	call	WriteDec
+	mov		esi, ecx
+
+	call	CheckRight
+	cmp		al, 4
+	je		AWins
+	cmp		ah, 4
+	je		BWins
 	
 	LOOP	LoopCheckWin
-ret
 
+	jmp LoopCheckWinDone
+
+	AWins:
+		call WriteDec
+		call delay
+
+	BWins:
+		call WriteDec
+
+	LoopCheckWinDone:
+		ret
 HasWon ENDP
 
 ;---------Helper functions called by HasWon-----------
