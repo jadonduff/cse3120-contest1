@@ -284,31 +284,36 @@ main proc
 	call	ClrScr
 
 	GameLoop:
+		; Render Board
 		call	PrintBoard
-
 		call	Crlf
 		call	Crlf
 
+		; User Move
 		mov		edx, 'A'
 		call	GetUserMove
 		call	MakeMove
 
+		; Render Board
 		call	Crlf
 		call	Crlf
-	
 		call	PrintBoard
 		
+		; Animate
 		mov eax, 750
 		call Delay
 	
+		; AI Move
 		mov		edx, 'B'
 		call	GetAIMove
 		call	MakeMove
 	
+		; Render Board
 		call	Crlf
 		call	Crlf
-
 		call	PrintBoard
+
+		; Loop
 		jmp		GameLoop
 
 	exit
