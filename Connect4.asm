@@ -188,7 +188,7 @@ GetAIMove ENDP
 ;Returns a value in eax: A if player A has won, B if player B has won, and 0 if no player has won yet.
 HasWon PROC
 
-mov		ecx, 41
+mov		ecx, 0
 
 LoopCheckWin:
 	mov		esi, ecx
@@ -199,13 +199,15 @@ LoopCheckWin:
 	cmp		ah, 4
 	je		BWins
 	
-	LOOP	LoopCheckWin
+	cmp		ecx, 41
+	je		LoopCheckWinDone
 
-	jmp LoopCheckWinDone
+	inc		ecx
+	jmp		LoopCheckWin
 
 	AWins:
 		call WriteDec
-		call delay
+
 
 	BWins:
 		call WriteDec
