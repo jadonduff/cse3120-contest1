@@ -32,8 +32,8 @@ rowSeparator BYTE "  |   |   |   |   |   |"
 prompt BYTE "Enter a number...", 0
 
 ; Winning messages
-awins BYTE "You Win!", 0
-bwins BYTE "You Lose.", 0
+awinsmsg BYTE "You Win!", 0
+bwinsmsg BYTE "You Lose.", 0
 
 
 ; ---- Code -----------------------------
