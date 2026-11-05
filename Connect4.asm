@@ -206,11 +206,20 @@ LoopCheckWin:
 	jmp		LoopCheckWin
 
 	AWins:
-		call WriteDec
-
+		call	ClrScr
+		mov		edx, OFFSET awinsmsg
+		call	WriteString
+		mov		eax, 5000
+		call	Delay
+		exit
 
 	BWins:
-		call WriteDec
+		call	ClrScr
+		mov		edx, OFFSET bwinsmsg
+		call	WriteString
+		mov		eax, 5000
+		call	Delay
+		exit
 
 	LoopCheckWinDone:
 		ret
