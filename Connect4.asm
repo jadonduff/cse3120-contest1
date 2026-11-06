@@ -336,6 +336,25 @@ CheckDownRight PROC
 	cmp ah, dh ;if the new index is less than the original index mod 7, we jump to endCheck
 	jb endCheck
 
+	cmp board[esi], 'B'
+	je incB
+	cmp board[esi], 'A'
+	jne endInc
+
+	;ax is used for division, so increment bl/bh
+	incA:
+	inc bl
+	jmp endInc
+
+	incB:
+	inc bh
+
+	endInc:
+
+	sub esi, 6 ;move to the cell diagonally down right
+	jc endCheck ;if carry flag is set, that indicates an underflow, so esi will no longer be a valid board cell
+	loop LR
+
 	endCheck:
 	mov ax, bx
 	ret
