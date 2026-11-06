@@ -237,43 +237,42 @@ HasWon ENDP
 
 ;Checks cells to the right from the start
 CheckRight PROC uses esi ebx ecx edx
-xor ax, ax
-xor bx, bx
+	xor ax, ax
+	xor bx, bx
 
-;Starter index in esi
-;if cell mod 7 ever decreases, that means we wrapped to another row, and should stop counting
-mov eax, esi
-div cols ;remainder is in ah
-mov dh, ah ;store the original value in dh
+	;Starter index in esi
+	;if cell mod 7 ever decreases, that means we wrapped to another row, and should stop counting
+	mov eax, esi
+	div cols ;remainder is in ah
+	mov dh, ah ;store the original value in dh
 
-mov ecx, 4 ;loop at most 4 times
-LR:
-mov eax, esi
-div cols ;remainder is in ah
-cmp ah, dh ;if the new index is less than the original index mod 7, we jump to endCheck
-jb endCheck
+	mov ecx, 4 ;loop at most 4 times
+	LR:
+	mov eax, esi
+	div cols ;remainder is in ah
+	cmp ah, dh ;if the new index is less than the original index mod 7, we jump to endCheck
+	jb endCheck
 
-cmp board[esi], 'A'
-je incA
-cmp board[esi], 'B'
-je incB
-jmp endInc
+	cmp board[esi], 'B'
+	je incB
+	cmp board[esi], 'A'
+	jne endInc
 
-;ax is used for division, so increment bl/bh
-incA:
-inc bl
-jmp endInc
+	;ax is used for division, so increment bl/bh
+	incA:
+	inc bl
+	jmp endInc
 
-incB:
-inc bh
+	incB:
+	inc bh
 
-endInc:
-inc esi
-loop LR
+	endInc:
+	inc esi
+	loop LR
 
-endCheck:
-mov ax, bx
-ret
+	endCheck:
+	mov ax, bx
+	ret
 
 CheckRight ENDP
 
@@ -295,6 +294,27 @@ CheckUpRight PROC
 	cmp ah, dh ;if the new index is less than the original index mod 7, we jump to endCheck
 	jb endCheck
 
+	cmp board[esi], 'B'
+	je incB
+	cmp board[esi], 'A'
+	jne endInc
+
+	;ax is used for division, so increment bl/bh
+	incA:
+	inc bl
+	jmp endInc
+
+	incB:
+	inc bh
+
+	endInc:
+	add esi,8 ;move to the cell diagonally up
+	loop LR
+
+	endCheck:
+	mov ax, bx
+	ret
+
 
 CheckUpRight ENDP
 
@@ -305,34 +325,34 @@ CheckDownRight ENDP
 
 ;Checks cells upward from the start
 CheckUp PROC uses esi ebx ecx edx
-xor ax, ax
+	xor ax, ax
 
-;starter index in esi
-;check 4 cells
-mov ecx, 4
-LU:
-;if the index is outside the board, immediately jump to the end
-cmp esi, 41
-ja endCheck
-cmp board[esi], 'A'
-je incA
-cmp board[esi], 'B'
-je incB
-jmp endInc
+	;starter index in esi
+	;check 4 cells
+	mov ecx, 4
+	LU:
+	;if the index is outside the board, immediately jump to the end
+	cmp esi, 41
+	ja endCheck
+	cmp board[esi], 'A'
+	je incA
+	cmp board[esi], 'B'
+	je incB
+	jmp endInc
 
-incA:
-inc al
-jmp endInc
+	incA:
+	inc al
+	jmp endInc
 
-incB:
-inc ah
+	incB:
+	inc ah
 
-endInc:
-add esi, 7
-loop LU
+	endInc:
+	add esi, 7
+	loop LU
 
-endCheck:
-ret
+	endCheck:
+	ret
 CheckUp ENDP
 
 
