@@ -289,7 +289,7 @@ CheckRight PROC uses esi ebx ecx edx
 CheckRight ENDP
 
 ;Checks cells diagonally up from the start
-CheckUpRight PROC
+CheckUpRight PROC uses ebx ecx edx esi 
 	xor ax, ax
 	xor bx, bx
 
@@ -331,7 +331,7 @@ CheckUpRight PROC
 CheckUpRight ENDP
 
 ;Checks cells diagonally down from the start
-CheckDownRight PROC
+CheckDownRight PROC uses ebx ecx edx esi
 	xor ax, ax
 	xor bx, bx
 
