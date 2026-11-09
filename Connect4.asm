@@ -34,6 +34,7 @@ prompt BYTE "Enter a number...", 0
 ; Winning messages
 awinsmsg BYTE "You Win!", 0
 bwinsmsg BYTE "You Lose.", 0
+drawmsg BYTE "Game ends in a draw...", 0
 
 
 ; ---- Code -----------------------------
@@ -188,6 +189,22 @@ GetAIMove ENDP
 ;Returns a value in eax: A if player A has won, B if player B has won, and 0 if no player has won yet.
 HasWon PROC
 
+;Check if board is full
+mov		ecx, 7
+LoopCheckFull:
+	cmp board[34+ecx], ' '
+	je LoopCheckWin ;board is not full
+	loop LoopCheckFull
+
+Draw:
+	call	ClrScr
+	mov		edx, OFFSET drawmsg
+	call	WriteString
+	mov		eax, 5000
+	call	Delay
+	exit
+
+;Check for 4 in a row from each cell
 mov		ecx, 0
 
 LoopCheckWin:
