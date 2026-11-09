@@ -204,6 +204,18 @@ LoopCheckWin:
 	je		AWins
 	cmp		ah, 4
 	je		BWins
+
+	call	CheckDownRight
+	cmp		al, 4
+	je		AWins
+	cmp		ah, 4
+	je		BWins
+
+	call	CheckUpRight
+	cmp		al, 4
+	je		AWins
+	cmp		ah, 4
+	je		BWins
 	
 	cmp		ecx, 41
 	je		LoopCheckWinDone
