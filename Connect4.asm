@@ -421,7 +421,13 @@ main proc
 
 		; User Move
 		mov		edx, 'A'
-		call	GetUserMove
+		RepeatUserMoveReq:
+			call	GetUserMove
+			cmp		eax, 1
+			jb		RepeatUserMoveReq
+			cmp		eax, 7
+			ja		RepeatUserMoveReq
+
 		call	MakeMove
 
 		; Check Win
