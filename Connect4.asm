@@ -446,7 +446,11 @@ main proc
 	
 		; AI Move
 		mov		edx, 'B'
-		call	GetAIMove
+		RepeatAIMoveReq:
+			call	GetAIMove
+			cmp		board[34+eax], ' '
+			jne		RepeatUserMoveReq
+	
 		call	MakeMove
 
 		; Check Win
