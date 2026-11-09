@@ -449,7 +449,7 @@ main proc
 		RepeatAIMoveReq:
 			call	GetAIMove
 			cmp		board[34+eax], ' '
-			jne		RepeatUserMoveReq
+			jne		RepeatAIMoveReq
 	
 		call	MakeMove
 
