@@ -427,6 +427,8 @@ main proc
 			jb		RepeatUserMoveReq
 			cmp		eax, 7
 			ja		RepeatUserMoveReq
+			cmp		board[34+eax], ' '
+			jne		RepeatUserMoveReq
 
 		call	MakeMove
 
