@@ -193,7 +193,7 @@ HasWon PROC
 mov		ecx, 7
 LoopCheckFull:
 	cmp board[34+ecx], ' '
-	je LoopCheckWin ;board is not full
+	je WinCheck ;board is not full
 	loop LoopCheckFull
 
 Draw:
@@ -201,10 +201,11 @@ Draw:
 	mov		edx, OFFSET drawmsg
 	call	WriteString
 	mov		eax, 5000
-	call	Delay
-	exit
+	;call	Delay
+	;exit
 
 ;Check for 4 in a row from each cell
+WinCheck:
 mov		ecx, 0
 
 LoopCheckWin:
